@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Ong {
+  id       String     @id @default(uuid())
+  name     String?
+  email    String     @unique
+  whatsapp String
+  city     String
+  uf       String
+  incident Incident[]
+
+  @@map("ongs")
+}
+
+model Incident {
+  id          String  @id @default(uuid())
+  title       String
+  description String
+  value       Decimal
+  ong         Ong     @relation(fields: [ongId], references: [id])
+  ongId       String
+
+  @@map("incidents")
+}

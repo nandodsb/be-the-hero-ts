@@ -1,0 +1,127 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API of open cases",
+        "description": "This api has the goal to register NGO cases",
+        "termsOfService": "http://localhost:3000/terms",
+        "contact": {
+            "email": "contact@mail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/v1",
+            "description": "API test"
+        }
+    ],
+    "paths": {
+        "/ongs": {
+            "get": {
+                "summary": "Get all NGOs",
+                "description": "This route allows users to search for all NGOs",
+                "tags": ["Ongs"],
+               
+                "responses": {
+                    "400": {
+                        "description": "Unable to get data"
+                    },
+                    "201": {
+                        "description": "Register retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Ong"                              
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create NGO",
+                "description": "This route allows users to create a NGO record",
+                "tags": ["Ongs"],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {  
+                                "$ref": "#/components/schemas/Ong"                             
+                            },
+                            "examples": {
+                                "ong": {
+                                    "value": {
+                                        "name": "NGO of phoenix",
+                                        "email": "phoenix@mail.com",
+                                        "whatsapp": "+152487522",
+                                        "city": "New York",
+                                        "uf": "NY"
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Not created"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Ong"                              
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Ong"                              
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "components": {
+        "schemas": {
+            "Ong": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "whatsapp": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "uf": {
+                        "type": "string"
+                    },
+                    "incident": {
+                        "type": "array"
+                    }
+                }
+            }
+        }
+    }
+}
