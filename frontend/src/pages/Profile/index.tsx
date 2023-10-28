@@ -92,40 +92,43 @@ export default function Profile() {
 				</div>
 			</header>
 
-			<h1>Registered cases:</h1>
+			<h1>Registered {incidents.length} cases :</h1>
 
 			<section className=" block lg:grid lg:grid-cols-2">
-				{incidents.map((incident) => (
-					<Card
-						key={incident.id}
-						className="m-4 dark:bg-gray-900"
-					>
-						<CardHeader>
-							<CardTitle className="flex justify-right">
-								CASE: {incident.title}
-							</CardTitle>
-							<CardDescription className="flex justify-right">
-								DESCRIPTION: {incident.description}
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<p>
-								{Intl.NumberFormat('pt-BR', {
-									style: 'currency',
-									currency: 'BRL'
-								}).format(incident.value)}
-							</p>
-						</CardContent>
-						<CardFooter className="flex justify-center">
-							<Button
-								onClick={() => handleDeleteIncident(incident.id)}
-								type="button"
+				{incidents.map(
+					(incident, index: number) =>
+						index < 10 && (
+							<Card
+								key={incident.id}
+								className="m-4 dark:bg-gray-900"
 							>
-								<Trash2 />
-							</Button>
-						</CardFooter>
-					</Card>
-				))}
+								<CardHeader>
+									<CardTitle className="flex justify-right">
+										CASE: {incident.title}
+									</CardTitle>
+									<CardDescription className="flex justify-right">
+										DESCRIPTION: {incident.description}
+									</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<p>
+										{Intl.NumberFormat('pt-BR', {
+											style: 'currency',
+											currency: 'BRL'
+										}).format(incident.value)}
+									</p>
+								</CardContent>
+								<CardFooter className="flex justify-center">
+									<Button
+										onClick={() => handleDeleteIncident(incident.id)}
+										type="button"
+									>
+										<Trash2 />
+									</Button>
+								</CardFooter>
+							</Card>
+						)
+				)}
 			</section>
 
 			{/* <nav

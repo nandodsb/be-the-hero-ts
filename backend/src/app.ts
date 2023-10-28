@@ -45,6 +45,6 @@ app.use(
 	swaggerUI.setup(swaggerDocs)
 );
 
-app.use('/v1', cors(corsOptions), routes);
+app.use('/v1', routes);
 
 export default app;

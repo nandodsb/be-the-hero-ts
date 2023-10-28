@@ -13,7 +13,7 @@ import { isAuthenticated } from './utils/middleware';
 
 export const routes = express.Router();
 
-//Ong Controller
+//NGO Controller
 routes.get('/ongs', getAllOngs);
 routes.post('/ongs', createOng);
 

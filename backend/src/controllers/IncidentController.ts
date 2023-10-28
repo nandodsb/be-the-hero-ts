@@ -40,7 +40,7 @@ export async function getOngIncidents(request: Request, response: Response) {
 
 		const incidents = await prisma.incident.findMany({
 			take: 10,
-			skip: (page - 1) * 5,
+			skip: (page - 1) * 10,
 			where: {
 				ongId: ong_id
 			}

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { prisma } from '../../prisma/client';
 import { Ong } from '@prisma/client';
 
-export async function getAllOngs(request: Request, response: Response) {
+export async function getAllOngs(_request: Request, response: Response) {
 	try {
 		const ongs = await prisma.ong.findMany({
 			include: {

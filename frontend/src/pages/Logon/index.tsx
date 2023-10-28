@@ -1,3 +1,5 @@
+/** src/pages/Logon */
+
 import { Button } from '@/components/ui/button';
 import heroesLogo from '@/assets/heroes.png';
 import logo from '@/assets/logo.svg';
@@ -37,7 +39,7 @@ export default function Logon() {
 	}
 	return (
 		<main className="h-auto w-full block items-center justify-between lg:flex xl:flex static">
-			<section className="w-full mr-8">
+			<section className="w-full mr-8 ">
 				<img
 					src={logo}
 					alt="Be The Hero"
@@ -74,6 +76,7 @@ export default function Logon() {
 					</a>
 				</form>
 			</section>
+
 			<img
 				src={heroesLogo}
 				alt="Heroes"
