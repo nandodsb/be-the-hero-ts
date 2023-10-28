@@ -5,7 +5,7 @@ export async function isAuthenticated(
 	response: Response,
 	next: NextFunction
 ) {
-	const token = request.headers.authorization;
+	const token = request.headers.authorization!;
 
 	if (!token) {
 		return response.status(401).send();

@@ -6,7 +6,7 @@ export async function getAllOngs(request: Request, response: Response) {
 	try {
 		const ongs = await prisma.ong.findMany({
 			include: {
-				incident: false
+				incident: true
 			}
 		});
 
@@ -20,11 +20,8 @@ export async function createOng(request: Request, response: Response) {
 	try {
 		const { name, email, whatsapp, city, uf }: Ong = request.body;
 
-		// const id = generateUniqueId();
-
 		const ong_id = await prisma.ong.create({
 			data: {
-				// id,
 				name,
 				email,
 				whatsapp,

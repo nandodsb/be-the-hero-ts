@@ -19,6 +19,18 @@ export async function getOneIncident(request: Request, response: Response) {
 }
 
 export async function getAllIncidents(request: Request, response: Response) {
+	// try {
+	const incidents = await prisma.incident.findMany();
+
+	console.log(incidents);
+
+	return response.json(incidents);
+	// } catch (err: unknown) {
+	// 	return response.status(400).json(err);
+	// }
+}
+
+export async function getOngIncidents(request: Request, response: Response) {
 	try {
 		const { page = 1 }: any = request.query;
 
@@ -27,8 +39,8 @@ export async function getAllIncidents(request: Request, response: Response) {
 		const ong_id = request.headers.authorization;
 
 		const incidents = await prisma.incident.findMany({
-			skip: 4,
-			take: (page - 1) * 5,
+			take: 10,
+			skip: (page - 1) * 5,
 			where: {
 				ongId: ong_id
 			}
@@ -52,6 +64,7 @@ export async function createIncident(request: Request, response: Response) {
 
 		const incident_data = await prisma.incident.create({
 			data: {
+				//id,
 				title,
 				description,
 				value,
@@ -77,7 +90,6 @@ export async function deleteIncident(request: Request, response: Response) {
 			}
 		});
 
-		// if(ong_incident?.ongId !== ong_id){
 		if (!ong_incident) {
 			return response.status(401).json({ error: 'Operation not permitted.' });
 		} else {
