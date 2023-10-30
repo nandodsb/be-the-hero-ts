@@ -6,11 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Ong {
+model Ngo {
   id       String     @id @default(uuid())
   name     String?
   email    String     @unique
@@ -19,7 +19,7 @@ model Ong {
   uf       String
   incident Incident[]
 
-  @@map("ongs")
+  @@map("ngos")
 }
 
 model Incident {
@@ -27,8 +27,8 @@ model Incident {
   title       String
   description String
   value       Decimal
-  ong         Ong     @relation(fields: [ongId], references: [id])
-  ongId       String
+  ngo         Ngo     @relation(fields: [ngoId], references: [id])
+  ngoId       String
 
   @@map("incidents")
 }

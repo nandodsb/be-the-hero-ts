@@ -6,6 +6,8 @@ import Profile from './pages/Profile';
 import Navbar from './components/navbar';
 import NewIncident from './pages/NewIncident';
 import { Toaster } from '@/components/ui/toaster';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 const router = createBrowserRouter([
 	{
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
 	{
 		path: '/incidents/new',
 		element: <NewIncident />
+	},
+	{
+		path: '/about',
+		element: <About />
+	},
+	{
+		path: '/contact',
+		element: <Contact />
 	}
 ]);
 

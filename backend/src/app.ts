@@ -3,7 +3,7 @@ import cors, { CorsOptions } from 'cors';
 import { routes } from './routes';
 import swaggerUI from 'swagger-ui-express';
 import swaggerDocs from './swagger.json';
-import redisClient from './utils/redis_connection';
+import redisClient from './utils/redis';
 
 const app = express();
 
@@ -45,6 +45,6 @@ app.use(
 	swaggerUI.setup(swaggerDocs)
 );
 
-app.use('/v1', routes);
+app.use('/v1', cors(corsOptions), routes);
 
 export default app;

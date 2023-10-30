@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Incident, Ong } from '@prisma/client';
+import { Incident } from '@prisma/client';
 import { prisma } from '../../prisma/client';
 
 export async function getOneIncident(request: Request, response: Response) {
@@ -30,19 +30,19 @@ export async function getAllIncidents(request: Request, response: Response) {
 	// }
 }
 
-export async function getOngIncidents(request: Request, response: Response) {
+export async function getNgoIncidents(request: Request, response: Response) {
 	try {
 		const { page = 1 }: any = request.query;
 
 		const count: any = await prisma.incident.count();
 
-		const ong_id = request.headers.authorization;
+		const ngo_id = request.headers.authorization;
 
 		const incidents = await prisma.incident.findMany({
-			take: 10,
-			skip: (page - 1) * 10,
+			take: 4,
+			skip: (page - 1) * 4,
 			where: {
-				ongId: ong_id
+				ngoId: ngo_id
 			}
 		});
 
@@ -58,7 +58,7 @@ export async function createIncident(request: Request, response: Response) {
 	try {
 		const { title, description, value }: Incident = request.body;
 
-		const ong_id: string = request.headers.authorization!;
+		const ngo_id: string = request.headers.authorization!;
 
 		console.log(request.headers);
 
@@ -68,7 +68,7 @@ export async function createIncident(request: Request, response: Response) {
 				title,
 				description,
 				value,
-				ongId: ong_id
+				ngoId: ngo_id
 			}
 		});
 
@@ -82,15 +82,15 @@ export async function deleteIncident(request: Request, response: Response) {
 	try {
 		const incident_id = request.params.id;
 
-		const ong_id = request.headers.authorization;
+		const ngo_id = request.headers.authorization;
 
-		const ong_incident = await prisma.incident.findFirst({
+		const ngo_incident = await prisma.incident.findFirst({
 			where: {
-				ongId: ong_id
+				ngoId: ngo_id
 			}
 		});
 
-		if (!ong_incident) {
+		if (!ngo_incident) {
 			return response.status(401).json({ error: 'Operation not permitted.' });
 		} else {
 			await prisma.incident.delete({

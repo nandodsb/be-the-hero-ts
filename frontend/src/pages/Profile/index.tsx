@@ -97,7 +97,7 @@ export default function Profile() {
 			<section className=" block lg:grid lg:grid-cols-2">
 				{incidents.map(
 					(incident, index: number) =>
-						index < 10 && (
+						index < 4 && (
 							<Card
 								key={incident.id}
 								className="m-4 dark:bg-gray-900"

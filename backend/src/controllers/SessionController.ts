@@ -5,7 +5,7 @@ export async function createSession(request: Request, response: Response) {
 	try {
 		const { id } = request.body;
 
-		const ong = await prisma.ong.findFirst({
+		const ngo = await prisma.ngo.findFirst({
 			where: {
 				id
 			},
@@ -14,11 +14,11 @@ export async function createSession(request: Request, response: Response) {
 			}
 		});
 
-		if (!ong) {
+		if (!ngo) {
 			throw new Error('Id provided not found');
 		}
 
-		return response.status(200).json(ong);
+		return response.status(200).json(ngo);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}

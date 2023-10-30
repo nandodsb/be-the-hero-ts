@@ -1,0 +1,29 @@
+version: "2"
+services:
+  server:
+    build: .
+    ports:
+      - 8000:8000
+      - 9229:9229 #debugger port
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: pnpm start:docker
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres@postgres/betheherots
+      PORT: 8000
+      REDIS_HOST: redis
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: betheherots
+      POSTGRES_HOST_AUTH_METHOD: trust
+      
+
+  redis:
+    image: redis:7.0.13-alpine
