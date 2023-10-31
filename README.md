@@ -1,3 +1,7 @@
-# Node + Express + Prisma + Postgres + Redis + Docker + Docker Compose + Swagger
+Backend
 
-# React + TypeScript + Vite + Tailwind + CapacitorJs + Jsdoc/Tsdoc
+- ### Node + Express + Prisma + Postgres + Redis + Docker + Docker Compose + Swagger
+
+Frontend
+
+- ### React + TypeScript + Vite + Tailwind + CapacitorJs + Jsdoc/Tsdoc
