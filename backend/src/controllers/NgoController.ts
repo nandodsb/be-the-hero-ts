@@ -3,6 +3,8 @@ import { prisma } from '../../prisma/client';
 import { Ngo } from '@prisma/client';
 import redisClient from '../utils/redis';
 
+let default_expiration = 3600;
+
 export async function getAllNgos(
 	_request: Request,
 	response: Response,
@@ -19,12 +21,12 @@ export async function getAllNgos(
 			return response.status(500).send(err);
 		});
 
-		if (data != null) {
+		if (data !== null) {
 			console.log('Cache found in Redis 🟢');
 			return response.status(200).json(JSON.parse(data));
 		} else {
 			console.log('Cache Not Found 🔴');
-			redisClient.setEx('ngos', 3600, JSON.stringify(ngos));
+			redisClient.setEx('ngos', default_expiration, JSON.stringify(ngos));
 			next();
 		}
 		return response.status(200).json(ngos);

@@ -1,6 +1,9 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { Incident } from '@prisma/client';
 import { prisma } from '../../prisma/client';
+import redisClient from '../utils/redis';
+
+let default_expiration = 3600;
 
 export async function getOneIncident(request: Request, response: Response) {
 	const incident_id = request.params.id;
@@ -18,16 +21,32 @@ export async function getOneIncident(request: Request, response: Response) {
 	}
 }
 
-export async function getAllIncidents(request: Request, response: Response) {
-	// try {
-	const incidents = await prisma.incident.findMany();
+export async function getAllIncidents(_request: Request, response: Response) {
+	try {
+		const incidents = await prisma.incident.findMany();
 
-	console.log(incidents);
+		const data: any = await redisClient
+			.get('incidents')
+			.catch((err: unknown) => {
+				return response.status(500).send(err);
+			});
 
-	return response.json(incidents);
-	// } catch (err: unknown) {
-	// 	return response.status(400).json(err);
-	// }
+		if (data !== null) {
+			console.log('Cache found in Redis 🟢');
+			return response.status(200).json(JSON.parse(data));
+		} else {
+			console.log('Cache Not Found 🔴');
+			redisClient.setEx(
+				'incidents',
+				default_expiration,
+				JSON.stringify(incidents)
+			);
+		}
+
+		return response.status(200).json(incidents);
+	} catch (err: unknown) {
+		return response.status(400).json(err);
+	}
 }
 
 export async function getNgoIncidents(request: Request, response: Response) {
@@ -48,7 +67,25 @@ export async function getNgoIncidents(request: Request, response: Response) {
 
 		response.header('X-Total-Count', count['count(*)']);
 
-		return response.json(incidents);
+		const data: any = await redisClient
+			.get('incidents')
+			.catch((err: unknown) => {
+				return response.status(500).send(err);
+			});
+
+		if (data !== null) {
+			console.log('Cache found in Redis 🟢');
+			return response.status(200).json(JSON.parse(data));
+		} else {
+			console.log('Cache Not Found 🔴');
+			redisClient.setEx(
+				'incidents',
+				default_expiration,
+				JSON.stringify(incidents)
+			);
+		}
+
+		return response.status(200).json(incidents);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}
@@ -62,7 +99,7 @@ export async function createIncident(request: Request, response: Response) {
 
 		console.log(request.headers);
 
-		const incident_data = await prisma.incident.create({
+		const incidents = await prisma.incident.create({
 			data: {
 				//id,
 				title,
@@ -72,7 +109,7 @@ export async function createIncident(request: Request, response: Response) {
 			}
 		});
 
-		return response.status(201).json(incident_data);
+		return response.status(201).json(incidents);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}

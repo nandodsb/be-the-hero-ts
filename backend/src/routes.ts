@@ -18,8 +18,8 @@ routes.get('/ngos', getAllNgos);
 routes.post('/ngos', createNgo);
 
 //Incident Routes
-routes.get('/incidents/:id', getOneIncident);
 routes.get('/incidents/all', getAllIncidents);
+routes.get('/incidents/:id', getOneIncident);
 routes.get('/incidents', isAuthenticated, getNgoIncidents);
 routes.post('/incidents', isAuthenticated, createIncident);
 routes.delete('/incidents/:id', isAuthenticated, deleteIncident);
