@@ -3,19 +3,22 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"scripts": {
-		"start": "tsx src/server.ts",
+	"scripts": {		
+		"redis": "redis-server",
+		"start": "tsx src/server.ts ",
 		"start:dev": "tsx watch src/server.ts",
 		"start:docker": "pnpm run build && node --inspect=0.0.0.0 dist/server.js",
 		"build": "tsup src",
+		"container": "docker start postcontainer",
 		"compose": "docker-compose up",
 		"compose:restart": "docker-compose restart",
 		"db:seed": "pnpm dlx prisma db seed && pnpm run docker:prisma:migrate && docker-compose restart",
-		"db:container": "docker run -it --name postcontainer -e 'POSTGRES_HOST_AUTH_METHOD=trust' -p 5432:5432 postgres",
+		
 		"db:console": "docker compose exec postgres psql -h localhost -U postgres -d betheherots",
 		"db:prisma:console": "docker compose exec postgres psql -h 0.0.0.0 -U postgres -d betheherots",
-		"db:migrate": "pnpm dlx prisma migrate dev",
+		
 		"docker:db:migrate": "docker compose run backend pnpm run db:migrate",
+		"postcontainer": "docker run -it --name postcontainer -e 'POSTGRES_HOST_AUTH_METHOD=trust' -p 5432:5432 postgres",
 		"rebuild:container": "docker compose build backend && docker compose rm --stop backend && docker compose up -d backend",
 		"prisma:migrate": "pnpm dlx prisma migrate dev",
 		"docker:prisma:migrate": "docker compose run backend pnpm run prisma:migrate",

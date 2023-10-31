@@ -2,25 +2,23 @@ import { Request, Response } from 'express';
 import { prisma } from '../../prisma/client';
 import redisClient from '../utils/redis';
 
-const default_expiration = 3600;
-
 export async function getProfile(request: Request, response: Response) {
-	try {
-		const ngo_id = request.headers.authorization;
+	const ngo_id: string = request.headers.authorization!;
 
-		const incidents = await prisma.incident.findMany({
+	try {
+		const incidents: object = await prisma.incident.findMany({
 			where: {
 				ngoId: ngo_id
 			}
 		});
 
-		redisClient.setEx(
-			'incidents',
-			default_expiration,
-			JSON.stringify(incidents)
-		);
+		await redisClient.get(ngo_id);
 
-		return response.status(200).json(incidents);
+		if (ngo_id !== null) {
+			return response.status(200).json(incidents);
+		} else {
+			redisClient.setEx(ngo_id, 3600, JSON.stringify(incidents));
+		}
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}
