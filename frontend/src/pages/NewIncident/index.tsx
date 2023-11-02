@@ -49,7 +49,7 @@ export default function NewIncident() {
 	const navigate = useNavigate();
 	const { toast } = useToast();
 
-	const ongId = localStorage.getItem('ongId');
+	const ngoId = localStorage.getItem('ngoId');
 
 	/**
 	 * Represents a new incident register
@@ -71,7 +71,7 @@ export default function NewIncident() {
 		try {
 			await api.post('/incidents', data, {
 				headers: {
-					Authorization: ongId
+					Authorization: ngoId
 				}
 			});
 

@@ -4,4 +4,4 @@ Backend
 
 Frontend
 
-- ### React + TypeScript + Vite + Tailwind + CapacitorJs + Jsdoc/Tsdoc
+- ### React + TypeScript + Vite + Tailwind + CapacitorJs + Jsdoc/Tsdoc + React-Router-Dom-V6

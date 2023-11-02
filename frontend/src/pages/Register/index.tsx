@@ -29,7 +29,7 @@ export default function Register() {
 		};
 
 		try {
-			const response = await api.post('/ongs', data);
+			const response = await api.post('/ngos', data);
 
 			alert(`Your access ID is: ${response.data.id}`);
 

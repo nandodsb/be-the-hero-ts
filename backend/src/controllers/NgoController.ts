@@ -27,7 +27,6 @@ export async function getAllNgos(
 		} else {
 			console.log('Cache Not Found 🔴');
 			redisClient.setEx('ngos', default_expiration, JSON.stringify(ngos));
-			next();
 		}
 		return response.status(200).json(ngos);
 	} catch (err: unknown) {

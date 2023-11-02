@@ -16,11 +16,11 @@
         }
     ],
     "paths": {
-        "/ongs": {
+        "/ngos": {
             "get": {
                 "summary": "Get all NGOs",
                 "description": "This route allows users to search for all NGOs",
-                "tags": ["Ongs"],
+                "tags": ["Ngos"],
                
                 "responses": {
                     "400": {
@@ -32,7 +32,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",                                   
-                                    "$ref": "#/components/schemas/Ong"                              
+                                    "$ref": "#/components/schemas/Ngo"                              
                                 }
                             }
                         }
@@ -42,12 +42,12 @@
             "post": {
                 "summary": "Create NGO",
                 "description": "This route allows users to create a NGO record",
-                "tags": ["Ongs"],
+                "tags": ["Ngos"],
                 "requestBody":{
                     "content": {
                         "application/json": {
                             "schema": {  
-                                "$ref": "#/components/schemas/Ong"                             
+                                "$ref": "#/components/schemas/Ngo"                             
                             },
                             "examples": {
                                 "ong": {
@@ -73,7 +73,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",                                   
-                                    "$ref": "#/components/schemas/Ong"                              
+                                    "$ref": "#/components/schemas/Ngo"                              
                                 }
                             }
                         }
@@ -84,7 +84,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",                                   
-                                    "$ref": "#/components/schemas/Ong"                              
+                                    "$ref": "#/components/schemas/Ngo"                              
                                 }
                             }
                         }
@@ -96,7 +96,7 @@
 
     "components": {
         "schemas": {
-            "Ong": {
+            "Ngo": {
                 "type": "object",
                 "properties": {
                     "id": {
@@ -121,7 +121,29 @@
                         "type": "array"
                     }
                 }
+            },
+
+            "Incident": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "number"
+                    },
+                    "ngoId": {
+                        "type": "string"
+                    }
+                }
             }
+            
         }
     }
 }

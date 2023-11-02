@@ -26,26 +26,26 @@ export default function Profile() {
 	const navigate = useNavigate();
 	const { toast } = useToast();
 
-	const ongId = localStorage.getItem('ongId');
-	const ongName: string = localStorage.getItem('ongName')!;
+	const ngoId = localStorage.getItem('ngoId');
+	const ngoName: string = localStorage.getItem('ngoName')!;
 
 	useEffect(() => {
 		api
 			.get('/profile', {
 				headers: {
-					Authorization: ongId
+					Authorization: ngoId
 				}
 			})
 			.then((response) => {
 				setIncidents(response.data);
 			});
-	}, [ongId]);
+	}, [incidents]); //ngoId
 
 	async function handleDeleteIncident(id: string) {
 		try {
 			await api.delete(`/incidents/${id}`, {
 				headers: {
-					Authorization: ongId
+					Authorization: ngoId
 				}
 			});
 
@@ -71,7 +71,7 @@ export default function Profile() {
 					src={logo}
 					alt="Be The Hero"
 				/>
-				<span>Welcome, {ongName}</span>
+				<span>Welcome, {ngoName}</span>
 
 				<div className="flex gap-4 items-start p-4">
 					<a href="/incidents/new">
@@ -97,7 +97,7 @@ export default function Profile() {
 			<section className=" block lg:grid lg:grid-cols-2">
 				{incidents.map(
 					(incident, index: number) =>
-						index < 4 && (
+						index < 10 && (
 							<Card
 								key={incident.id}
 								className="m-4 dark:bg-gray-900"

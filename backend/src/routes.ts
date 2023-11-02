@@ -17,8 +17,9 @@ export const routes = express.Router();
 routes.get('/ngos', getAllNgos);
 routes.post('/ngos', createNgo);
 
+routes.get('/registers/all', getAllIncidents);
+
 //Incident Routes
-routes.get('/incidents/all', getAllIncidents);
 routes.get('/incidents/:id', getOneIncident);
 routes.get('/incidents', isAuthenticated, getNgoIncidents);
 routes.post('/incidents', isAuthenticated, createIncident);
