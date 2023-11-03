@@ -9,25 +9,32 @@ export async function getProfile(
 	response: Response,
 	next: NextFunction
 ) {
-	try {
-		const ngo_id: string = request.headers.authorization!;
-		const incidents = await prisma.incident.findMany({
-			where: {
-				ngoId: ngo_id
-			}
-		});
+	let in_cache = false;
+	let incidents;
+	const ngo_id: string = request.headers.authorization!;
 
+	try {
 		const data: any = await redisClient.get(ngo_id).catch((err: unknown) => {
 			return response.status(500).send(err);
 		});
 
-		if (data !== null) {
-			return response.status(200).json(JSON.parse(data));
+		if (data) {
+			in_cache = true;
+			incidents = JSON.parse(data);
 		} else {
+			incidents = await prisma.incident.findMany({
+				where: {
+					ngoId: ngo_id
+				}
+			});
+
+			if (incidents.length === 0) {
+				throw 'No incident is registered.';
+			}
 			redisClient.setEx(ngo_id, default_expiration, JSON.stringify(incidents));
 		}
 
-		return response.status(200).json(incidents);
+		return response.send({ fromCache: in_cache, data: incidents });
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}
