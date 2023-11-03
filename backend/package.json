@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"type": "module",
-	"scripts": {		
+	"scripts": {
 		"redis": "redis-server",
 		"start": "tsx src/server.ts ",
 		"start:dev": "tsx watch src/server.ts",
@@ -14,10 +14,8 @@
 		"compose": "docker-compose up",
 		"compose:restart": "docker-compose restart",
 		"db:seed": "pnpm dlx prisma db seed",
-		
 		"db:console": "docker compose exec postgres psql -h localhost -U postgres -d betheherots",
 		"db:prisma:console": "docker compose exec postgres psql -h 0.0.0.0 -U postgres -d betheherots",
-		
 		"docker:db:migrate": "docker compose run backend pnpm run db:migrate",
 		"postcontainer": "docker run -it --name postcontainer -e 'POSTGRES_HOST_AUTH_METHOD=trust' -p 5432:5432 postgres",
 		"rebuild:container": "docker compose build backend && docker compose rm --stop backend && docker compose up -d backend",
@@ -30,7 +28,7 @@
 	"license": "ISC",
 	"prisma": {
 		"seed": "tsx prisma/seed.ts"
-	  },
+	},
 	"dependencies": {
 		"@prisma/client": "^5.5.2",
 		"axios": "^1.6.0",

@@ -39,7 +39,7 @@ export default function Profile() {
 			.then((response) => {
 				setIncidents(response.data);
 			});
-	}, [incidents]); //ngoId
+	}, [ngoId]); //ngoId
 
 	async function handleDeleteIncident(id: string) {
 		try {
