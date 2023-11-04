@@ -56,7 +56,8 @@ export default function Profile() {
 	}
 
 	function handleLogout() {
-		localStorage.clear();
+		localStorage.removeItem('ngoId');
+		localStorage.removeItem('ngoName');
 		toast({
 			variant: 'destructive',
 			title: 'Logout'
