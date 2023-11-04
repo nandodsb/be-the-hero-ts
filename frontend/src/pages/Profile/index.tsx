@@ -58,6 +58,8 @@ export default function Profile() {
 	function handleLogout() {
 		localStorage.removeItem('ngoId');
 		localStorage.removeItem('ngoName');
+		localStorage.removeItem('token');
+		sessionStorage.clear();
 		toast({
 			variant: 'destructive',
 			title: 'Logout'

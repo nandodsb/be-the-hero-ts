@@ -1,6 +1,6 @@
 Backend
 
-- ### Node + Express + Prisma + Postgres + Redis + Docker + Docker Compose + Swagger + Vitest
+- ### Node + Express + Prisma + Postgres + Redis + Docker + Docker Compose + Swagger + Vitest + BullMQ
 
 Frontend
 

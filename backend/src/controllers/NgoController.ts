@@ -3,32 +3,28 @@ import { prisma } from '../../prisma/client';
 import { Ngo } from '@prisma/client';
 import redisClient from '../utils/redis';
 
-let default_expiration = 1;
-
-export async function getAllNgos(
-	_request: Request,
-	response: Response,
-	next: NextFunction
-) {
+export async function getAllNgos(_request: Request, response: Response) {
+	let ngos;
 	try {
-		const ngos = await prisma.ngo.findMany({
-			include: {
-				incident: true
-			}
-		});
-
 		const data: any = await redisClient.get('ngos').catch((err: unknown) => {
 			return response.status(500).send(err);
 		});
 
-		if (data !== null) {
-			console.log('Cache found in Redis 🟢');
-			return response.status(200).json(JSON.parse(data));
+		if (data) {
+			ngos = JSON.parse(data);
 		} else {
-			console.log('Cache Not Found 🔴');
-			redisClient.setEx('ngos', default_expiration, JSON.stringify(ngos));
+			ngos = await prisma.ngo.findMany({
+				include: {
+					incident: true
+				}
+			});
+
+			if (ngos.length === 0) {
+				throw new Error('No ngo is registered.');
+			}
+			redisClient.set('ngos', JSON.stringify(ngos));
 		}
-		return response.status(200).json(ngos);
+		return response.json(ngos);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}
