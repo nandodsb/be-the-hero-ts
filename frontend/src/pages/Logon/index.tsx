@@ -10,6 +10,7 @@ import { LogIn } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@/components/ui/toast';
+import { twMerge } from 'tailwind-merge';
 
 export default function Logon() {
 	const [id, setId] = useState<string>('');
@@ -60,7 +61,9 @@ export default function Logon() {
 
 					<Button
 						type="submit"
-						className="logo text-lg font-sans h-16 w-full py-6 rounded-lg mt-4 bg-red-600 hover:bg-red-500 dark:text-white"
+						className={twMerge(
+							'logo text-lg font-sans h-16 w-full py-6 rounded-lg mt-4 bg-[#e02041] hover:bg-[#e02041] dark:text-white'
+						)}
 					>
 						Sign in
 					</Button>
@@ -69,7 +72,7 @@ export default function Logon() {
 						href="/register"
 						className="flex items-center justify-center mt-5 mb-5 text-lg mr-2"
 					>
-						<LogIn className="text-red-500 mr-2" />
+						<LogIn className={twMerge('text-[#e02041] mr-2')} />
 						Register
 					</a>
 				</form>

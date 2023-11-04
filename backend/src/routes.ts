@@ -1,5 +1,5 @@
 import express from 'express';
-import { createNgo, getAllNgos } from './controllers/NgoController';
+import { createNgo, deleteNgo, getAllNgos } from './controllers/NgoController';
 import {
 	createIncident,
 	deleteIncident,
@@ -16,6 +16,7 @@ export const routes = express.Router();
 //NGO Routes
 routes.get('/ngos', getAllNgos);
 routes.post('/ngos', createNgo);
+routes.delete('/ngos/:id', isAuthenticated, deleteNgo);
 
 routes.get('/registers/all', getAllIncidents);
 
