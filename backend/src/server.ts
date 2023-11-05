@@ -3,7 +3,7 @@ import morgan from 'morgan';
 
 app.use(morgan('dev'));
 
-const port = 3000;
+const port = Number(process.env.PORT ?? 8080);
 const hostname = '0.0.0.0';
 
 app.listen(port, hostname, () => {

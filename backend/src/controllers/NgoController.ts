@@ -2,13 +2,22 @@ import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../../prisma/client';
 import { Ngo } from '@prisma/client';
 import redisClient from '../utils/redis';
+import { updateNgosData } from '../utils/queue';
 
-export async function getAllNgos(_request: Request, response: Response) {
+export async function getAllNgos(
+	_request: Request,
+	response: Response,
+	next: NextFunction
+) {
 	let ngos;
+	let data: any;
+
 	try {
-		const data: any = await redisClient.get('ngos').catch((err: unknown) => {
+		data = await redisClient.get('ngos').catch((err: unknown) => {
 			return response.status(500).send(err);
 		});
+
+		data = updateNgosData(data);
 
 		if (data) {
 			ngos = JSON.parse(data);
@@ -19,12 +28,14 @@ export async function getAllNgos(_request: Request, response: Response) {
 				}
 			});
 
-			if (ngos.length === 0) {
-				throw new Error('No ngo is registered.');
+			if (ngos === null) {
+				next();
+			} else {
+				redisClient.set('ngos', JSON.stringify(ngos));
 			}
-			redisClient.set('ngos', JSON.stringify(ngos));
+			return response.json(ngos);
 		}
-		return response.json(ngos);
+		return response.json(data);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}
