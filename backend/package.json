@@ -10,7 +10,7 @@
 		"start:docker": "pnpm run build && node --inspect=0.0.0.0 dist/server.js",
 		"build": "tsup src",
 		"container": "docker start postcontainer",
-		"compose": "docker-compose -p be-the-hero-ts up",
+		"compose": "docker-compose -p betheherots up",
 		"compose:restart": "docker-compose restart",
 		"db:seed": "pnpm dlx prisma db seed",
 		"db:console": "docker compose exec postgres psql -h localhost -U postgres -d backend",
