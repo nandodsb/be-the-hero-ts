@@ -62,7 +62,7 @@ export default function Logon() {
 					<Button
 						type="submit"
 						className={twMerge(
-							'logo text-lg font-sans h-16 w-full py-6 rounded-lg mt-4 bg-[#e02041] hover:bg-[#e02041] dark:text-white'
+							'logo text-lg font-sans h-16 w-full py-6 rounded-lg mt-4 bg-[#E02041] hover:bg-[#E02041]/80 dark:text-white'
 						)}
 					>
 						Sign in
@@ -72,7 +72,7 @@ export default function Logon() {
 						href="/register"
 						className="flex items-center justify-center mt-5 mb-5 text-lg mr-2"
 					>
-						<LogIn className={twMerge('text-[#e02041] mr-2')} />
+						<LogIn className={twMerge('text-[#E02041] mr-2')} />
 						Register
 					</a>
 				</form>

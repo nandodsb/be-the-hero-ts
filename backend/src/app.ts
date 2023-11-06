@@ -3,7 +3,7 @@ import cors, { CorsOptions } from 'cors';
 import { routes } from './routes';
 import swaggerUI from 'swagger-ui-express';
 import swaggerDocs from './swagger.json';
-// import redisClient from './utils/redis';
+import redisClient from './utils/redis';
 
 const app = express();
 
@@ -34,9 +34,9 @@ app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
-// app.use('/api/redis-check', async () => {
-// 	await redisClient.get('Connect');
-// });
+app.use('/api/redis-check', async () => {
+	await redisClient.get('Connect');
+});
 
 app.use(
 	'/api-docs',

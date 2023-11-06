@@ -1,10 +1,13 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../../prisma/client';
 import redisClient from '../utils/redis';
 import { updateIncidentsData } from '../utils/queue';
 
-export async function getProfile(request: Request, response: Response) {
-	let in_cache = false;
+export async function getProfile(
+	request: Request,
+	response: Response,
+	next: NextFunction
+) {
 	let incidents;
 	let data: any;
 
@@ -18,7 +21,6 @@ export async function getProfile(request: Request, response: Response) {
 		data = updateIncidentsData(data);
 
 		if (data) {
-			in_cache = true;
 			incidents = JSON.parse(data);
 		} else {
 			incidents = await prisma.incident.findMany({
@@ -27,12 +29,14 @@ export async function getProfile(request: Request, response: Response) {
 				}
 			});
 
-			if (incidents.length === 0) {
-				throw new Error('No incident is registered.');
+			if (incidents === null) {
+				next();
+			} else {
+				redisClient.set('ngo_id', JSON.stringify(incidents));
 			}
-			redisClient.set('ngo_id', JSON.stringify(incidents));
+			return response.json(incidents);
 		}
-		return response.json(incidents);
+		return response.json(data);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
 	}

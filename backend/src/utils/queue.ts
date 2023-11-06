@@ -7,7 +7,6 @@ const connection = {
 };
 
 const incidentsQueue = new Queue('incidentsQueue', { connection });
-const ngosQueue = new Queue('ngosQueue');
 
 const incidentsWorker = new Worker(
 	'incidentsQueue',
@@ -27,4 +26,36 @@ export const updateIncidentsData = (incidentsData: any) => {
 
 incidentsWorker.on('completed', (job) => {
 	console.log('Completed');
+});
+
+incidentsWorker.on('error', (err) => {
+	console.error(err);
+});
+
+///
+
+const ngosQueue = new Queue('ngosQueue', { connection });
+
+const ngosWorker = new Worker(
+	'ngosQueue',
+	async (job) => {
+		const ngosData = job.data;
+
+		console.log('Processed data:', ngosData);
+
+		return { dataProcessed: true };
+	},
+	{ connection }
+);
+
+export const updateNgosData = (ngosData: any) => {
+	ngosQueue.add('processData', ngosData);
+};
+
+ngosWorker.on('completed', (job) => {
+	console.log('Completed');
+});
+
+ngosWorker.on('error', (err) => {
+	console.error(err);
 });

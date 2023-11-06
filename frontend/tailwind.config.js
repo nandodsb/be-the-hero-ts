@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
+    fontFamily: {
+      roboto: [ "Roboto", "sans-serif" ],
+
+    },
     screens: {
       'sm': { 'min': '640px', 'max': '767px' },
       // => @media (min-width: 640px) { ... }

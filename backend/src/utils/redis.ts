@@ -9,6 +9,7 @@ const redisClient = createClient({
 async function connectRedis(): Promise<void> {
 	try {
 		await redisClient.connect();
+		await redisClient.set('Connect', 'Redis');
 		console.log('Redis client connect successfully');
 	} catch (err) {
 		console.log(err);

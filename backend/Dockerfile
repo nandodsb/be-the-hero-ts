@@ -17,7 +17,10 @@ RUN pnpm dlx prisma generate
 COPY . .
 
 RUN pnpm run build
+RUN pnpm install pm2 -g
 
-EXPOSE 8080
+# EXPOSE 80
+EXPOSE 3000
 
-CMD ["pnpm", "start"]
+# CMD ["pnpm", "start"]
+CMD ["pm2-runtime", "process.yml"]
