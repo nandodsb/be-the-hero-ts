@@ -7,7 +7,7 @@
 		"redis": "redis-server",
 		"start": "tsx src/server.ts ",
 		"start:dev": "tsx watch src/server.ts",
-		"start:docker": "pnpm run build && node --inspect=0.0.0.0 dist/server.js",
+		"start:docker": "pnpm run build && pm2 --inspect=0.0.0.0 dist/server.js",
 		"build": "tsup src",
 		"container": "docker start postcontainer",
 		"compose": "docker-compose -p betheherots up",

@@ -90,7 +90,12 @@ export async function getNgoIncidents(request: Request, response: Response) {
 		return response.status(400).json(err);
 	}
 }
-
+ /**
+  * 
+  * @param request 
+  * @param response 
+  * @returns 
+  */
 export async function createIncident(request: Request, response: Response) {
 	let ngo;
 	let incidents;

@@ -1,12 +1,11 @@
 version: "2"
 services:
   server:
-    container_name: bethehero
+    container_name: node
     build: .
-    ports:
-      - 80:80
-      - 3000:3000
-      - 9229:9229 #debugger port
+    ports:      
+      - 8000:8000
+      - 9229:9229 #debugger port    
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -15,19 +14,20 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://postgres@postgres/betheherots
-      PORT: 3000
+      PORT: 8000
       REDIS_HOST: redis
 
   postgres:
+    container_name: postgres
     image: postgres:15-alpine
     ports:
       - 5432:5432
     environment:
       POSTGRES_DB: betheherots
-      POSTGRES_HOST_AUTH_METHOD: trust
-      
+      POSTGRES_HOST_AUTH_METHOD: trust      
 
   redis:
+    container_name: redis
     image: redis:7.0.13-alpine
 
   nginx:
