@@ -92,23 +92,35 @@ export async function getNgoIncidents(request: Request, response: Response) {
 }
 
 export async function createIncident(request: Request, response: Response) {
+	let ngo;
+	let incidents;
 	try {
 		const { title, description, value }: Incident = request.body;
 
 		const ngo_id: string = request.headers.authorization!;
 
-		console.log(request.headers);
-
-		const incidents = await prisma.incident.create({
-			data: {
-				//id,
-				title,
-				description,
-				value,
-				ngoId: ngo_id
+		ngo = await prisma.ngo.findUnique({
+			where: {
+				id: ngo_id
+			},
+			select: {
+				id: true
 			}
 		});
 
+		if (ngo === null || ngo.id !== ngo_id) {
+			return response.status(401).json({ message: 'Not authorized.' });
+		} else {
+			incidents = await prisma.incident.create({
+				data: {
+					//id,
+					title,
+					description,
+					value,
+					ngoId: ngo_id
+				}
+			});
+		}
 		return response.status(201).json(incidents);
 	} catch (err: unknown) {
 		return response.status(400).json(err);
