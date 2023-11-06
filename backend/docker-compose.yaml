@@ -15,7 +15,7 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://postgres@postgres/betheherots
-      PORT: 8000
+      PORT: 3000
       REDIS_HOST: redis
 
   postgres:
