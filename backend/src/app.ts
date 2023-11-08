@@ -34,8 +34,8 @@ app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
-app.use('/api/redis-check', async () => {
-	await redisClient.get('Connect');
+app.use('/api/redis-check', () => {
+	redisClient.get('Connect');
 });
 
 app.use(

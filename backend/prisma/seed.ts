@@ -22,7 +22,7 @@ const incident_fake_data: any = {
 	// id: faker.string.uuid(),
 	title: faker.lorem.text(),
 	description: faker.lorem.paragraph(),
-	value: faker.number.float(3),
+	value: faker.number.int(),
 	ngoId: ngo_fake_data.id
 };
 
