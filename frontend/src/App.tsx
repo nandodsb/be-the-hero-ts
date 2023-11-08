@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import './App.css';
 import Navbar from './components/navbar';
+import './i18n';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Logon from './pages/Logon';

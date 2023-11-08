@@ -11,10 +11,12 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@/components/ui/toast';
 import { twMerge } from 'tailwind-merge';
+import { useTranslation } from 'react-i18next';
 
 export default function Logon() {
 	const [id, setId] = useState<string>('');
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 	const { toast } = useToast();
 
 	async function handleLogin(event: FormEvent<HTMLFormElement>) {
@@ -48,7 +50,7 @@ export default function Logon() {
 					onSubmit={handleLogin}
 					className="mt-2"
 				>
-					<h1 className="mt-8 text-2xl">Log in</h1>
+					<h1 className="mt-8 text-2xl">{t('Welcome to Be The Hero')}</h1>
 
 					<Input
 						className="text-lg text-black font-sans font-bold h-16 w-full py-6 rounded-lg border-gray-100 bg-white mt-4"
