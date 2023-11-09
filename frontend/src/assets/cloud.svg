@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="147.43396"
+   height="45.600471"
+   viewBox="0 0 147.43396 45.600471"
+   sodipodi:docname="heroes.png"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1"
+     transform="translate(-597.44421,-67.65046)">
+    <path
+       style="fill:#f9f9f9;stroke-width:4.806;stroke-linecap:round;stroke-linejoin:round"
+       d="m 597.44419,111.47242 147.43398,1.77851 c -0.0416,-20.255816 -10.95225,-29.385143 -26.68854,-28.112141 -25.38589,-31.1132 -56.80884,-14.601431 -70.61451,2.578485 -21.81973,-7.340852 -42.15026,-1.523201 -50.13093,23.755146 z"
+       id="path1"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

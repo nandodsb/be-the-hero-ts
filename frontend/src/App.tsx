@@ -6,13 +6,13 @@ import Navbar from './components/navbar';
 import './i18n';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Logon from './pages/Logon';
+import Login from './pages/Login';
 import NewIncident from './pages/NewIncident';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 
 const routes = [
-	{ path: '/', element: <Logon /> },
+	{ path: '/', element: <Login /> },
 	{ path: '/register', element: <Register /> },
 	{ path: '/profile', element: <Profile /> },
 	{ path: '/incidents/new', element: <NewIncident /> },
