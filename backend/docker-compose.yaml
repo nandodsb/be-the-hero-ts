@@ -3,9 +3,9 @@ services:
   server:
     container_name: node
     build: .
-    ports:      
+    ports:
       - 8000:8000
-      - 9229:9229 #debugger port    
+      - 9229:9229 #debugger port   
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules

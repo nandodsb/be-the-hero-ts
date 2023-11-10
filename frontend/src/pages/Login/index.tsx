@@ -10,31 +10,6 @@ import { twMerge } from 'tailwind-merge';
 import useHandleLogin from './useHandleLogin';
 
 export default function Login() {
-	// const [id, setId] = useState<string>('');
-	// const navigate = useNavigate();
-	// const { t } = useTranslation();
-	// const { toast } = useToast();
-
-	// async function handleLogin(event: FormEvent<HTMLFormElement>) {
-	// 	event.preventDefault();
-
-	// 	try {
-	// 		const response = await api.post('/sessions', { id });
-
-	// 		localStorage.setItem('ngoId', id);
-	// 		localStorage.setItem('ngoName', response.data.name);
-
-	// 		navigate('/profile');
-	// 	} catch (err) {
-	// 		toast({
-	// 			variant: 'destructive',
-	// 			title: 'Login failed, try again',
-	// 			action: <ToastAction altText="Try again">Try again</ToastAction>
-	// 		});
-	// 		console.log(err);
-	// 	}
-	// }
-
 	const { t, id, setId, handleLogin } = useHandleLogin();
 
 	return (

@@ -9,7 +9,7 @@ RUN corepack enable
 
 WORKDIR /usr/src/app
 
-COPY package.json pm2.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY prisma/schema.prisma ./prisma/
@@ -17,10 +17,9 @@ RUN pnpm dlx prisma generate
 
 COPY . .
 
-RUN pnpm install pm2 -g
 RUN pnpm run build
 
 EXPOSE 8080
 
 
-CMD ["pm2-runtime", "process.yaml"]
+CMD ["pnpm", "start"]

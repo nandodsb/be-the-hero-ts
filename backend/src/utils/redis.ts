@@ -1,9 +1,10 @@
 import { createClient } from 'redis';
 
 // const redisUrl = 'redis://redis:6379';
+const redisUrl = 'redis://localhost:6379';
 
 const redisClient = createClient({
-	url: process.env.REDIS_URL
+	url: redisUrl
 });
 
 async function connectRedis(): Promise<void> {
