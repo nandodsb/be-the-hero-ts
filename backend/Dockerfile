@@ -1,7 +1,7 @@
 FROM node:18.18-alpine
 
 RUN npm i -g pnpm
-RUN pnpm install pm2 -g
+
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -17,10 +17,10 @@ RUN pnpm dlx prisma generate
 
 COPY . .
 
-
+RUN pnpm install pm2 -g
 RUN pnpm run build
 
 EXPOSE 8080
 
 
-CMD ["pm2-runtime", "start", "pm2.json"]
+CMD ["pm2-runtime", "process.yaml"]

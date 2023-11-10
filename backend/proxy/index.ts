@@ -1,6 +1,6 @@
 import figlet from 'figlet';
 
-const server = Bun.serve({
+let server = Bun.serve({
 	port: 8081,
 	fetch: () => {
 		const body = figlet.textSync('Bun Proxy!');

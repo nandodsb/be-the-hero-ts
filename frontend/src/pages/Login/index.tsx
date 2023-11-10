@@ -8,7 +8,6 @@ import { LogIn } from 'lucide-react';
 import { ChangeEvent } from 'react';
 import { twMerge } from 'tailwind-merge';
 import useHandleLogin from './useHandleLogin';
-import Cloud from '@/components/cloud';
 
 export default function Login() {
 	// const [id, setId] = useState<string>('');

@@ -1,0 +1,7 @@
+export default {[{
+  script: './src/server.js',
+  name: 'betheherots',
+  exec_mode: 'cluster',
+  instances: 0
+  }]
+}
