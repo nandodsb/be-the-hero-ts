@@ -19,6 +19,7 @@ const httpServer = http.createServer(app);
 new Promise<void>((resolve: (value: void | PromiseLike<void>) => void) =>
 	httpServer.listen({ hostname, port }, resolve)
 );
+
 console.log(`🚀 Server ready at http://localhost:${port}`);
 // }
 

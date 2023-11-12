@@ -7,7 +7,7 @@ const redisClient = createClient({
 	url: redisUrl
 });
 
-async function connectRedis(): Promise<void> {
+export async function connectRedis(): Promise<void> {
 	try {
 		await redisClient.connect();
 		await redisClient.set('Connect', 'Redis');
@@ -16,7 +16,5 @@ async function connectRedis(): Promise<void> {
 		console.log(err);
 	}
 }
-
-connectRedis();
 
 export default redisClient;
