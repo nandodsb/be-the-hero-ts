@@ -17,4 +17,6 @@ export async function connectRedis(): Promise<void> {
 	}
 }
 
+connectRedis();
+
 export default redisClient;

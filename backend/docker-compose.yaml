@@ -34,18 +34,17 @@ services:
         container_name: nginx
         restart: unless-stopped
         image: nginx
-        ports:
-            - 80:80
+        ports:            
             - 443:443
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-        depends_on:
-            - certbot
+        
 
   certbot:
+    container_name: certbot 
     image: certbot/certbot
-    volumes:
-      - ./letsencrypt:/etc/letsencrypt
     depends_on:
-      - nginx
+            - nginx
+    volumes:
+      - ./letsencrypt:/etc/letsencrypt    
     command: ["certonly", "--nginx", "-d", "betheherots.com"]

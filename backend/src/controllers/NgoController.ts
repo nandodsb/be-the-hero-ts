@@ -18,6 +18,7 @@ export async function getAllNgos(
 		});
 
 		data = updateNgosData(data);
+		1;
 
 		if (data) {
 			ngos = JSON.parse(data);

@@ -16,9 +16,14 @@ export const routes = express.Router();
 //NGO Routes
 routes.get('/ngos', getAllNgos);
 routes.post('/ngos', createNgo);
+
+/**
+ * @swagger
+ * /ngos/{id}
+ */
 routes.delete('/ngos/:id', isAuthenticated, deleteNgo);
 
-routes.get('/registers/all', getAllIncidents);
+routes.get('/feed', getAllIncidents);
 
 //Incident Routes
 routes.get('/incidents/:id', getOneIncident);

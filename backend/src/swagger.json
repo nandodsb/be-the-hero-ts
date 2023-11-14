@@ -11,11 +11,35 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3000/v1",
+            "url": "http://localhost:8080/v1",
             "description": "API test"
         }
     ],
-    "paths": {
+    "paths":{
+        "/feed": {
+            "get": {
+            "summary": "Get all NGOs",
+            "description": "This route allows users to search for all NGOs",
+            "tags": ["Feeds"],
+
+            "responses": {
+                "400": {
+                    "description": "Unable to get data"
+                },
+                "200": {
+                    "description": "Register retrieved",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",                                   
+                                "$ref": "#/components/schemas/Feed"                              
+                            }
+                        }
+                    }
+                }
+            }
+            }
+        },
         "/ngos": {
             "get": {
                 "summary": "Get all NGOs",
@@ -26,7 +50,7 @@
                     "400": {
                         "description": "Unable to get data"
                     },
-                    "201": {
+                    "200": {
                         "description": "Register retrieved",
                         "content": {
                             "application/json": {
@@ -90,12 +114,177 @@
                         }
                     }
                 }
+            },
+            "update": {},
+            "delete": {
+                "summary": "Delete NGO",
+                "description": "This route allows users to delete a NGO",
+                "tags": ["Ngos"],
+                "parameters": [                    
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "schema": {
+                        "$ref": "#/components/schemas/Ngo"
+                      },
+                    "required": true, 
+                      "description": "A single id"
+                    }
+                  ],
+               
+                "responses": {
+                    "400": {
+                        "description": "Error to delete NGO"
+                    },
+                    "401": {
+                        "description": "Operation not permitted"
+                    },
+                    "200": {
+                        "description": "NGO register deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Ngo"                              
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }
-    },
+        } ,
+        "/incidents": {
+            "get": {
+                "summary": "Get all NGOs",
+                "description": "This route allows users to search for all NGOs",
+                "tags": ["Incidents"],
+               
+                "responses": {
+                    "400": {
+                        "description": "Unable to get data"
+                    },
+                    "200": {
+                        "description": "Register retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Incident"                              
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create NGO",
+                "description": "This route allows users to create a NGO record",
+                "tags": ["Incidents"],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {  
+                                "$ref": "#/components/schemas/Incident"                             
+                            },
+                            "examples": {
+                                "ong": {
+                                    "value": {
+                                        "name": "NGO of phoenix",
+                                        "email": "phoenix@mail.com",
+                                        "whatsapp": "+152487522",
+                                        "city": "New York",
+                                        "uf": "NY"
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Not created"
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Incident"                              
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Incident"                              
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "update": {},
+            "delete": {
+                "summary": "Delete NGO",
+                "description": "This route allows users to delete a NGO",
+                "tags": ["Incidents"],
+               
+                "responses": {
+                    "400": {
+                        "description": "Error to delete NGO"
+                    },
+                    "401": {
+                        "description": "Operation not permitted"
+                    },
+                    "200": {
+                        "description": "NGO register deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",                                   
+                                    "$ref": "#/components/schemas/Incident"                              
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }      
+    }, 
 
     "components": {
         "schemas": {
+            "Feed": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "whatsapp": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "uf": {
+                        "type": "string"
+                    },
+                    "incident": {
+                        "type": "array"
+                    }
+                }
+            },
             "Ngo": {
                 "type": "object",
                 "properties": {

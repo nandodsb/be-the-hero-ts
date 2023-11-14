@@ -8,7 +8,9 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
 RUN apk add --update --no-cache openssl
+RUN apk update && apk upgrade openssl
 
+RUN apk add nginx
 RUN mkdir -p /etc/nginx/ssl
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
@@ -23,7 +25,7 @@ RUN pnpm dlx prisma generate
 COPY . .
 
 RUN pnpm run build
-EXPOSE 80
+
 EXPOSE 8080
 
 
