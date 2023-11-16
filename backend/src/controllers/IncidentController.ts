@@ -164,7 +164,7 @@ export async function createIncident(request: Request, response: Response) {
 	}
 }
 
-export async function updateIncident() {}
+// export async function updateIncident() {}
 /**
  *
  * @param request

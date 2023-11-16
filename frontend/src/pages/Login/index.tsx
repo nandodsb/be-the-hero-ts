@@ -1,5 +1,4 @@
-/** src/pages/Logon */
-
+/** src/pages/Login */
 import heroesLogo from '@/assets/heroes.png';
 import logo from '@/assets/logo.svg';
 import { Button } from '@/components/ui/button';
@@ -11,7 +10,6 @@ import useHandleLogin from './useHandleLogin';
 
 export default function Login() {
 	const { t, id, setId, handleLogin } = useHandleLogin();
-
 	return (
 		<main className="h-auto w-full block items-center justify-between lg:flex xl:flex static">
 			<section className="w-full mr-8 ">

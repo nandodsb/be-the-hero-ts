@@ -13,60 +13,11 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card';
-
-interface IIncidents {
-	id: string;
-	title: string;
-	description: string;
-	value: number;
-}
+import useHandleProfile from './useHandleProfile';
 
 export default function Profile() {
-	const [incidents, setIncidents] = useState<IIncidents[]>([]);
-	const navigate = useNavigate();
-	const { toast } = useToast();
-
-	const ngoId = localStorage.getItem('ngoId');
-	const ngoName: string = localStorage.getItem('ngoName')!;
-
-	useEffect(() => {
-		api
-			.get('/profile', {
-				headers: {
-					Authorization: ngoId
-				}
-			})
-			.then((response) => {
-				setIncidents(response.data);
-			});
-	}, [ngoId]); //ngoId
-
-	async function handleDeleteIncident(id: string) {
-		try {
-			await api.delete(`/incidents/${id}`, {
-				headers: {
-					Authorization: ngoId
-				}
-			});
-
-			setIncidents(incidents.filter((incident) => incident.id !== id));
-		} catch (err) {
-			alert('Error, unable to delete it.');
-		}
-	}
-
-	function handleLogout() {
-		localStorage.removeItem('ngoId');
-		localStorage.removeItem('ngoName');
-		localStorage.removeItem('token');
-		sessionStorage.clear();
-		toast({
-			variant: 'destructive',
-			title: 'Logout'
-		});
-		navigate('/');
-	}
-
+	const { ngoName, incidents, handleDeleteIncident, handleLogout } =
+		useHandleProfile();
 	return (
 		<main className="h-auto w-full block items-center justify-between ">
 			<header>

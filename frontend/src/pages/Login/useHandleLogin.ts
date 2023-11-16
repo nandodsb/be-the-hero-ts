@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export default function useHandleLogin() {
-	const [id, setId] = useState<string>('');
+	const [id, setId] = useState('');
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const { toast } = useToast();

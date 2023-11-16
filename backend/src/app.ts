@@ -8,7 +8,6 @@ import redisClient from './utils/redis';
 const app = express();
 
 const allowedOrigins = [
-	'*',
 	'capacitor://localhost',
 	'ionic://localhost',
 	'http://localhost',

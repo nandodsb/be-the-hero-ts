@@ -6,12 +6,12 @@ import http from 'http';
 
 app.use(morgan('dev'));
 
-const hostname = '0.0.0.0';
-const httpPort = 8080;
-const httpServer = http.createServer(app);
-httpServer.listen({ hostname, port: httpPort }, () => {
-	console.log(`🚀 HTTP server ready at http://localhost:${httpPort}`);
-});
+// const hostname = '0.0.0.0';
+// const httpPort = 8080;
+// const httpServer = http.createServer(app);
+// httpServer.listen({ host: hostname, port: httpPort }, () => {
+// 	console.log(`🚀 HTTP server ready at http://localhost:${httpPort}`);
+// });
 
 // const httpsOptions = {
 // 	key: fs.readFileSync('/etc/nginx/ssl/nginx.key'),
@@ -25,8 +25,8 @@ httpServer.listen({ hostname, port: httpPort }, () => {
 // });
 
 // async function startServer() {
-// const hostname = '0.0.0.0';
-// const port = Number(process.env.PORT ?? 8080);
+const hostname = '0.0.0.0';
+const port = Number(process.env.PORT ?? 8080);
 
 // const httpServer = http.createServer(app);
 
@@ -39,6 +39,6 @@ httpServer.listen({ hostname, port: httpPort }, () => {
 
 // startServer();
 
-// app.listen(port, hostname, () => {
-// 	console.log(`🚀 Server ready at  http://localhost:${port}`);
-// });
+app.listen(port, hostname, () => {
+	console.log(`🚀 Server ready at  http://localhost:${port}`);
+});

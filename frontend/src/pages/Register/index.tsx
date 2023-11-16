@@ -1,46 +1,24 @@
-import { ArrowLeft } from 'lucide-react';
 import logo from '@/assets/logo.svg';
-import api from '@/services/api';
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
-import { ToastAction } from '@/components/ui/toast';
+import { ArrowLeft } from 'lucide-react';
+import { ChangeEvent } from 'react';
+import useHandleRegister from './useHandleRegister';
 
 export default function Register() {
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [whatsapp, setWhatsapp] = useState('');
-	const [city, setCity] = useState('');
-	const [uf, setUf] = useState('');
-	const navigate = useNavigate();
-	const { toast } = useToast();
-
-	async function handleRegister(event: FormEvent<HTMLFormElement>) {
-		event.preventDefault();
-
-		const data = {
-			name,
-			email,
-			whatsapp,
-			city,
-			uf
-		};
-
-		try {
-			const response = await api.post('/ngos', data);
-
-			alert(`Your access ID is: ${response.data.id}`);
-
-			navigate('/profile');
-		} catch (err) {
-			toast({
-				title: 'Register failed, try again',
-				action: <ToastAction altText="Try again">Try again</ToastAction>
-			});
-		}
-	}
+	const {
+		name,
+		setName,
+		email,
+		setEmail,
+		whatsapp,
+		setWhatsapp,
+		city,
+		setCity,
+		uf,
+		setUf,
+		handleRegister
+	} = useHandleRegister();
 
 	return (
 		<main className="h-auto w-full block items-center justify-between">

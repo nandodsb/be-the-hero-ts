@@ -21,7 +21,10 @@ const incidentsWorker = new Worker(
 );
 
 export const updateIncidentsData = (incidentsData: any) => {
-	incidentsQueue.add('processData', incidentsData);
+	incidentsQueue.add('processData', incidentsData, {
+		removeOnComplete: true,
+		removeOnFail: true
+	});
 };
 
 incidentsWorker.on('completed', (job) => {
@@ -49,7 +52,10 @@ const ngosWorker = new Worker(
 );
 
 export const updateNgosData = (ngosData: any) => {
-	ngosQueue.add('processData', ngosData);
+	ngosQueue.add('processData', ngosData, {
+		removeOnComplete: true,
+		removeOnFail: true
+	});
 };
 
 ngosWorker.on('completed', (job) => {
