@@ -1,5 +1,5 @@
-import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
+import { INewOrganization } from '@/interfaces';
 import api from '@/services/api';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ export default function useHandleRegister() {
 	async function handleRegister(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
-		const data = {
+		const newOrganization: INewOrganization = {
 			name,
 			email,
 			whatsapp,
@@ -25,7 +25,7 @@ export default function useHandleRegister() {
 		};
 
 		try {
-			const response = await api.post('/ngos', data);
+			const response = await api.post('/ngos', newOrganization);
 
 			alert(`Your access ID is: ${response.data.id}`);
 

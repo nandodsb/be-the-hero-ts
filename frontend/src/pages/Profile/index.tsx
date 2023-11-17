@@ -1,8 +1,3 @@
-import { LogOut, Trash2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import api from '@/services/api';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/components/ui/use-toast';
 import logo from '@/assets/logo.svg';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,11 +8,13 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card';
+import { LogOut, Trash2 } from 'lucide-react';
 import useHandleProfile from './useHandleProfile';
 
 export default function Profile() {
 	const { ngoName, incidents, handleDeleteIncident, handleLogout } =
 		useHandleProfile();
+
 	return (
 		<main className="h-auto w-full block items-center justify-between ">
 			<header>
@@ -69,7 +66,7 @@ export default function Profile() {
 										{Intl.NumberFormat('pt-BR', {
 											style: 'currency',
 											currency: 'BRL'
-										}).format(incident.value)}
+										}).format(Number(incident.value))}
 									</p>
 								</CardContent>
 								<CardFooter className="flex justify-center">

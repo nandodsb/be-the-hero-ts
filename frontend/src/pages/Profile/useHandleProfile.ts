@@ -1,11 +1,11 @@
 import { useToast } from '@/components/ui/use-toast';
-import { IIncidents } from '@/interfaces';
+import { IRegisteredIncidents } from '@/interfaces';
 import api from '@/services/api';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function useHandleProfile() {
-	const [incidents, setIncidents] = useState<IIncidents[]>([]);
+	const [incidents, setIncidents] = useState<IRegisteredIncidents[]>([]);
 	const navigate = useNavigate();
 	const { toast } = useToast();
 
