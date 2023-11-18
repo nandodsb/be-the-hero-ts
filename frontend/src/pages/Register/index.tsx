@@ -21,7 +21,7 @@ export default function Register() {
 	} = useHandleRegister();
 
 	return (
-		<main className="h-auto w-full block items-center justify-between">
+		<main className="h-auto w-full p-8 block items-center justify-between">
 			<section className="w-full mr-8">
 				<img
 					src={logo}

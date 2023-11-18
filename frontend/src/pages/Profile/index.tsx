@@ -16,7 +16,7 @@ export default function Profile() {
 		useHandleProfile();
 
 	return (
-		<main className="h-auto w-full block items-center justify-between ">
+		<main className="h-auto w-full p-8 block items-center justify-between ">
 			<header>
 				<img
 					src={logo}
@@ -45,7 +45,7 @@ export default function Profile() {
 
 			<h1>Registered {incidents.length} cases :</h1>
 
-			<section className=" block lg:grid lg:grid-cols-2">
+			<section className="block lg:grid lg:grid-cols-2">
 				{incidents.map(
 					(incident, index: number) =>
 						index < 10 && (

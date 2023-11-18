@@ -11,7 +11,7 @@ import useHandleLogin from './useHandleLogin';
 export default function Login() {
 	const { t, id, setId, handleLogin } = useHandleLogin();
 	return (
-		<main className="h-auto w-full block items-center justify-between lg:flex xl:flex static">
+		<main className="h-auto w-full p-8 block items-center justify-between lg:flex xl:flex static">
 			<section className="w-full mr-8 ">
 				<img
 					src={logo}

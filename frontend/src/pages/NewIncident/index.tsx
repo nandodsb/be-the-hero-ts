@@ -28,7 +28,7 @@ export default function NewIncident() {
 	} = useHandleNewIncident();
 
 	return (
-		<main className="h-auto w-full block items-center justify-between ">
+		<main className="h-auto w-full p-8 block items-center justify-between ">
 			<div className="">
 				<section>
 					<img

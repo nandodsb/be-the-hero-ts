@@ -11,10 +11,18 @@ import NewIncident from './pages/NewIncident';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 import IncidentFeed from './pages/IncidentFeed';
+import Layout from './layout';
 
 const routes = [
 	{ path: '/', element: <Login /> },
-	{ path: '/feed', element: <IncidentFeed /> },
+	{
+		path: '/feed',
+		element: (
+			<Layout>
+				<IncidentFeed />
+			</Layout>
+		)
+	},
 	{ path: '/register', element: <Register /> },
 	{ path: '/profile', element: <Profile /> },
 	{ path: '/incidents/new', element: <NewIncident /> },
