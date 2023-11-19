@@ -1,14 +1,14 @@
 import express from 'express';
-import { createNgo, deleteNgo, getAllNgos } from './controllers/NgoController';
+import { getAllIncidents } from './controllers/FeedController';
 import {
 	createIncident,
 	deleteIncident,
-	getAllIncidents,
-	getOneIncident,
-	getNgoIncidents
+	getNgoIncidents,
+	getOneIncident
 } from './controllers/IncidentController';
-import { createSession } from './controllers/SessionController';
+import { createNgo, deleteNgo, getAllNgos } from './controllers/NgoController';
 import { getProfile } from './controllers/ProfileController';
+import { createSession } from './controllers/SessionController';
 import { isAuthenticated } from './utils/middleware';
 
 export const routes = express.Router();
@@ -17,10 +17,6 @@ export const routes = express.Router();
 routes.get('/ngos', getAllNgos);
 routes.post('/ngos', createNgo);
 
-/**
- * @swagger
- * /ngos/{id}
- */
 routes.delete('/ngos/:id', isAuthenticated, deleteNgo);
 
 routes.get('/feed', getAllIncidents);

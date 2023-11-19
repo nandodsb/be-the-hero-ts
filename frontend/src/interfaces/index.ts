@@ -20,6 +20,9 @@ export interface IRegisteredIncidents extends INewIncident {
 	id: string;
 }
 
+export interface IRegisteredFeed extends IRegisteredIncidents {
+	ngo: INewOrganization;
+}
 /**
  *
  */

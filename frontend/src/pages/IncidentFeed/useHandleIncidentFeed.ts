@@ -1,20 +1,20 @@
-import { IRegisteredIncidents } from '@/interfaces';
+import { incidentState, organizationState } from '@/recoil';
 import api from '@/services/api';
 import { useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 export default function useHandleIncidentFeed() {
-	const incidentState = atom<IRegisteredIncidents[]>({
-		key: 'incidentStateKey',
-		default: []
-	});
-
 	const [incidents, setIncidents] = useRecoilState(incidentState);
+	const [ngo, setNgo] = useRecoilState(organizationState);
 
 	useEffect(() => {
 		api.get('/feed').then((response) => {
 			setIncidents(response.data);
 		});
-	}, [incidents]);
+
+		api.get('/ngos').then((response) => {
+			setNgo(response.data);
+		});
+	}, [incidents, ngo]);
 	return { incidents, setIncidents };
 }

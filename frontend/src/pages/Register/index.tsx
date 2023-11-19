@@ -26,6 +26,7 @@ export default function Register() {
 				<img
 					src={logo}
 					alt="Be The Hero"
+					className="invisible lg:visible"
 				/>
 				<h1 className="mt-1 text-xl">Register</h1>
 				<p className="text-lg">

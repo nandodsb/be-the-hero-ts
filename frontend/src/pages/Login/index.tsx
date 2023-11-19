@@ -16,6 +16,7 @@ export default function Login() {
 				<img
 					src={logo}
 					alt="Be The Hero"
+					className="invisible lg:visible"
 				/>
 
 				<form
