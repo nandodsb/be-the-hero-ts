@@ -9,10 +9,11 @@ RUN corepack enable
 
 RUN apk add --update --no-cache openssl
 RUN apk update && apk upgrade openssl
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
 RUN apk add nginx
 RUN mkdir -p /etc/nginx/ssl
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+
 
 WORKDIR /usr/src/app
 

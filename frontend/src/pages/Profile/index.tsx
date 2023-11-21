@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { LogOut, Trash2 } from 'lucide-react';
 import useHandleProfile from './useHandleProfile';
+import { IRegisteredIncidents } from '@/interfaces';
 
 export default function Profile() {
 	const { ngoName, incidents, handleDeleteIncident, handleLogout } =
@@ -47,7 +48,7 @@ export default function Profile() {
 
 			<section className="block lg:grid lg:grid-cols-2">
 				{incidents.map(
-					(incident, index: number) =>
+					(incident: IRegisteredIncidents, index: number) =>
 						index < 10 && (
 							<Card
 								key={incident.id}
