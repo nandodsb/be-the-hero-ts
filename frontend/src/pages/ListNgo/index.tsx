@@ -1,3 +1,3 @@
 export default function ListNgo() {
-	return <div>ListNgo</div>;
+	return <section> List NGO </section>;
 }
