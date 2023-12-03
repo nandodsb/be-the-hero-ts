@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import Register from './pages/Register';
 import IncidentFeed from './pages/IncidentFeed';
 import Layout from './layout';
+import ListNgo from './pages/ListNgo';
 
 const routes = [
 	{ path: '/', element: <Login /> },
@@ -20,6 +21,14 @@ const routes = [
 		element: (
 			<Layout>
 				<IncidentFeed />
+			</Layout>
+		)
+	},
+	{
+		path: '/list',
+		element: (
+			<Layout>
+				<ListNgo />
 			</Layout>
 		)
 	},
