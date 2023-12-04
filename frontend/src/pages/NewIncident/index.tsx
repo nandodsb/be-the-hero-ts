@@ -18,11 +18,8 @@ import useHandleNewIncident from './useHandleNewIncident';
 export default function NewIncident() {
 	const {
 		title,
-
 		description,
-
 		value,
-
 		handleNewIncidentChange,
 		handleNewIncident
 	} = useHandleNewIncident();
@@ -51,7 +48,7 @@ export default function NewIncident() {
 					<Input
 						className="text-lg text-black font-sans font-bold h-16 w-full py-6 rounded-lg border-gray-100 bg-white mt-4"
 						placeholder="Title"
-						name="name"
+						name="title"
 						value={title}
 						onChange={handleNewIncidentChange}
 					/>

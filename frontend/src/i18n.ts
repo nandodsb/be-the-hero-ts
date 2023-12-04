@@ -11,12 +11,17 @@ const resources = {
 		translation: {
 			'Welcome to Be The Hero': 'Bienvenue à Be The Hero App'
 		}
+	},
+	nl: {
+		translation: {
+			'Welcome to Be The Hero': 'Welkom bij Be The Hero-app'
+		}
 	}
 };
 
 i18n.use(initReactI18next).init({
-	resources,
 	lng: 'en',
+	resources,
 
 	interpolation: {
 		escapeValue: false

@@ -11,6 +11,7 @@ import {
 import { IRegisteredFeed } from '@/interfaces';
 import useHandleIncidentFeed from './useHandleIncidentFeed';
 import { ArrowLeft, Contact } from 'lucide-react';
+import { SiWhatsapp } from 'react-icons/si';
 
 export default function IncidentFeed() {
 	const { incidents } = useHandleIncidentFeed();
@@ -45,7 +46,8 @@ export default function IncidentFeed() {
 								type="button"
 								className="w-full"
 							>
-								<Contact />
+								<SiWhatsapp size={16} />
+								&nbsp; Whatsapp
 							</Button>
 							<Button
 								type="button"
