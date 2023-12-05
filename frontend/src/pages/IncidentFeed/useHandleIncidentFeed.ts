@@ -11,5 +11,20 @@ export default function useHandleIncidentFeed() {
 			setIncidents(response.data);
 		});
 	}, [incidents]);
+
+	// function sendMail() {
+	//     MailComposer.composeAsync({
+	//         subject: `Herói do caso: ${incident.title} `,
+	//         recipients: [incident.email],
+	//         body: message,
+	//     })
+	// }
+
+	// function sendWhatsapp() {
+	//     Linking.openURL(
+	//         `whatsapp://send?phone=${incident.whatsapp}&text=${message}`
+	//     )
+	// }
+
 	return { incidents };
 }
