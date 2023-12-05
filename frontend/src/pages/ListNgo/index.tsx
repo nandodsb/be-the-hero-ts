@@ -15,34 +15,38 @@ export default function ListNgo() {
 	const { ngos } = useHandleListOrganization();
 
 	return (
-		<main>
-			{ngos.map((ngo: IRegisteredOrganization, index: number) => (
-				<Card
-					key={index}
-					className=" m-4 dark:bg-gray-900 grid grid-cols-2"
-				>
-					<section>
-						<CardHeader>
-							<CardTitle className="flex justify-right">
-								Organization: {ngo.name}
-							</CardTitle>
-							<CardDescription className="flex justify-right">
-								DESCRIPTION: {}
-							</CardDescription>
-						</CardHeader>
-						<CardContent></CardContent>
-						<CardFooter className="flex justify-center">
-							<Button
-								onClick={() => {}}
-								type="button"
-							></Button>
-						</CardFooter>
-					</section>
-					<aside className="bg-secondary p-2">
-						<div className="bg-primary w-full h-full p-2">A</div>
-					</aside>
-				</Card>
-			))}
-		</main>
+		<>
+			<main>
+				{ngos.map((ngo: IRegisteredOrganization, index: number) => (
+					<Card
+						key={index}
+						className=" m-4 dark:bg-gray-900 grid grid-cols-2"
+					>
+						<section>
+							<CardHeader>
+								<CardTitle className="flex justify-right">
+									Organization: {ngo.name}
+								</CardTitle>
+								<CardDescription className="flex justify-right">
+									From {ngo.city}, {ngo.uf}
+								</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<ul>
+									<li>Email: {ngo.email}</li>
+									<li>Whatsapp: {ngo.whatsapp}</li>
+								</ul>
+							</CardContent>
+							<CardFooter className="flex justify-center"></CardFooter>
+						</section>
+						<aside className="bg-base-900 p-2">
+							<div className="bg-base-700 text-base-200 text-9xl font-sans font-bold  w-full h-full p-2 rounded-xl flex justify-center items-center">
+								{ngo.incident.length}
+							</div>
+						</aside>
+					</Card>
+				))}
+			</main>
+		</>
 	);
 }

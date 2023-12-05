@@ -11,5 +11,6 @@ export default function useHandleListOrganization() {
 			setNgos(response.data);
 		});
 	}, [ngos]);
+
 	return { ngos };
 }

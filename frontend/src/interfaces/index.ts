@@ -37,4 +37,5 @@ export interface INewOrganization {
 export interface IRegisteredOrganization extends INewOrganization {
 	id: string;
 	ngoId: string;
+	incident: IRegisteredIncidents[];
 }
